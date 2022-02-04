@@ -70,11 +70,20 @@ jobs:
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
-      - name: Build and push Docker image
+      - name: Build and push Docker image for Focal
         id: build-and-push
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: ubuntufocal/
           push: ${{ github.event_name != 'pull_request' }}
           tags: idiotoflinux/gns3images:ubuntufocal
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Build and push Docker image for Hirsute
+        id: build-and-push
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: ubuntuhirsute/
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: idiotoflinux/gns3images:ubuntuhirsute
           labels: ${{ steps.meta.outputs.labels }}
