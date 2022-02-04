@@ -19,7 +19,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: docker.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: idiotoflinux/gns3images
 
 
 jobs:
@@ -76,7 +76,7 @@ jobs:
         with:
           context: ubuntufocal/
           push: ${{ github.event_name != 'pull_request' }}
-          tags: idiotoflinux/gns3images:ubuntufocal
+          tags: ubuntufocal
           labels: ${{ steps.meta.outputs.labels }}
 
       # Sign the resulting Docker image digest except on PRs.
